@@ -36,7 +36,13 @@ function initMainnetWhaleClient (): WhaleApiClient {
   return new WhaleApiClient({ url: 'https://ocean.defichain.com', network: 'mainnet', version: 'v0' })
 }
 
-function initMainnetWallet (client: WhaleApiClient, mnemonic24Words: string[], nodeDerivationPath: string = '0'): WhaleWalletAccount {
+/**
+ * @param client
+ * @param mnemonic24Words 24 words string array
+ * @param nodeDerivationPath default 1129/0/0/0, jellyfish LW default
+ * @returns
+ */
+function initMainnetWallet (client: WhaleApiClient, mnemonic24Words: string[], nodeDerivationPath: string = '1129/0/0/0'): WhaleWalletAccount {
   const network = getNetwork('mainnet')
   const hdNodeProvider = MnemonicHdNodeProvider.fromWords(mnemonic24Words, {
     bip32: {
